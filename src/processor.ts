@@ -18,7 +18,7 @@ export class PDFProcessor {
     }
 
     public process() {
-        // linux qpdf command to encrypt pdf
+        // linux qpdf command to encrypt/decrypt pdf
         const cmd: string = `qpdf --password=${this.password} --${this.method} ${this.orgfilepath} ${this.newfilepath}`;
 
         return new Promise((resolve, reject) => {
@@ -26,13 +26,11 @@ export class PDFProcessor {
             exec(cmd, (error: any) => {
                 if (error !== null){
 
-                    console.log('exec error: ' + error);
                     resolve({ error: true, message: error})
             
                 } else {
 
-                    console.log('Your pdf is encripted successfully.');
-                    resolve({error: false, message: `pdf ${this.method}ed successfully and saved here' + ${this.newfilepath}`})
+                    reject({error: false, message: `pdf ${this.method}ed successfully and saved here' + ${this.newfilepath}`})
                    
                 }});
     
