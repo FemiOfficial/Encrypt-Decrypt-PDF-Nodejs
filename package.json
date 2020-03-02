@@ -1,0 +1,28 @@
+{
+  "name": "encrypt-decrpt-pdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start:dev": "nodemon",
+    "build": "rm -rf ./build && tsc",
+    "start": "npm run build && node build/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FemiOfficial/Encrypt-Decrypt-PDF-Nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FemiOfficial/Encrypt-Decrypt-PDF-Nodejs/issues"
+  },
+  "homepage": "https://github.com/FemiOfficial/Encrypt-Decrypt-PDF-Nodejs#readme",
+  "devDependencies": {
+    "@types/node": "^13.7.7",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  }
+}
