@@ -14,7 +14,12 @@ const decryptmethod: string = 'decrypt'
 const processor = new Processor(sourcepath, destpath, password, username);
 
 // encrypt pdf
-const encryptor = processor.process(encryptmethod);
+processor.process(encryptmethod)
+.then(data => console.log(data))
+.catch(err => console.log(err));
 
 //decrypt pdf
-const decryptor = processor.process(decryptmethod);
+processor.process(decryptmethod)
+.then(data => console.log(data))
+.catch(err => console.log(err));
+
