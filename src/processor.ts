@@ -1,27 +1,32 @@
 import { exec } from "child_process";
 
-export class PDFProcessor {
+class PDFProcessor {
 
     orgfilepath: String;
     newfilepath: String;
     password: String;
-    method: String;
+    username: String;
+    methodarray: Array<String>;
 
-    constructor(orgfilepath: String, newfilepath: String, password: String, method: String) {
+    constructor(orgfilepath: String, newfilepath: String, password: String, username: String) {
         this.orgfilepath = orgfilepath;
         this.newfilepath = newfilepath;
         this.password = password;
-        this.method = method;
-        if(this.method !== 'decrypt' || this.method !== 'encrypt') {
-            throw 'invalid method parameter (encrypt or decrypt)'
-        }
+        this.username = username;
+        this.methodarray = ['decrypt', 'encrypt'];
     }
 
-    public process() {
+    public async process(method: string) {
+        if (!this.methodarray.includes(method)) {
+            throw 'invalid method parameter (encrypt or decrypt)'
+        }
         // linux qpdf command to encrypt/decrypt pdf
-        const cmd: string = `qpdf --password=${this.password} --${this.method} ${this.orgfilepath} ${this.newfilepath}`;
+        const cmd: string =
+          method === this.methodarray[0]
+            ? `qpdf --password=${this.password} --${method} ${this.orgfilepath} ${this.newfilepath}`
+            : `qpdf --${method} ${this.username} ${this.password} 40 -- ${this.newfilepath} ${this.orgfilepath}`;
 
-        return new Promise((resolve, reject) => {
+        const res = await new Promise((resolve, reject) => {
 
             exec(cmd, (error: any) => {
                 if (error !== null){
@@ -30,12 +35,16 @@ export class PDFProcessor {
             
                 } else {
 
-                    reject({error: false, message: `pdf ${this.method}ed successfully and saved here' + ${this.newfilepath}`})
+                    reject({error: false, message: `pdf ${method}ed successfully and saved here' + ${this.newfilepath}`})
                    
                 }});
     
-        })
+        });
+
+        return res;
 
 
     }
 }
+
+export default PDFProcessor;

@@ -2,7 +2,7 @@
   "name": "encrypt-decrpt-pdf",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "processor.ts",
   "scripts": {
     "start:dev": "nodemon",
     "build": "rm -rf ./build && tsc",
