@@ -50,7 +50,7 @@ var PDFProcessor = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         if (!this.methodarray.includes(method)) {
-                            throw "invalid method parameter (encrypt or decrypt)";
+                            throw new Error("invalid method parameter (encrypt or decrypt)");
                         }
                         cmd = method === this.methodarray[0]
                             ? "qpdf --password=" + this.password + " --" + method + " " + orgfilepath + " " + newfilepath

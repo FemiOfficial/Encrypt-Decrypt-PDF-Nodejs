@@ -1,7 +1,7 @@
 import path from "path";
 import Processor from "./processor";
-import { describe } from "mocha";
 import assert from 'assert';
+import { expect } from 'chai';
 
 
 const sourcepath: string = path.join(
@@ -32,22 +32,27 @@ const invalidpassword: String = "blahblah";
 
 const encryptmethod: string = "encrypt";
 const decryptmethod: string = "decrypt";
-const invalidmethd: string = "invalid";
+const invalidmethod: string = "invalid";
 
 const processor = new Processor(password, username);
 
 describe('Testing Processor on various test scenarios', () => {
-    it('should throw an error for invalid file path', () => {
+    it('should throw an error for invalid file path for encryption', () => {
+        processor.process(encryptmethod, invalidsrcpath, destpath)
+            .then((data: any) => {
+                assert.equal(data.error, true)
+            });
 
     }) 
 
-    it("should throw an error for invalid file path", () => {
-
+    it("should throw an error for invalid file path for decryption", () => {
+        processor.process(decryptmethod, invalidsrcpath, destpath)
+            .then((data: any) => {
+                assert.equal(data.error, true);
+            });
     }); 
 
-    it("should throw an error for invalid file path", () => {
-
-    }); 
+  
 
     it("should throw an error for invalid file path", () => {
 

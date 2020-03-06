@@ -13,7 +13,7 @@ class PDFProcessor {
 
   public async process(method: string, orgfilepath: string, newfilepath: string) {
     if (!this.methodarray.includes(method)) {
-      throw "invalid method parameter (encrypt or decrypt)";
+      throw new Error("invalid method parameter (encrypt or decrypt)");
     }
     // linux qpdf command to encrypt/decrypt pdf
     const cmd: string =
