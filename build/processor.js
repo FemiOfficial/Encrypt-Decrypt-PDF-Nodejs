@@ -38,33 +38,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var child_process_1 = require("child_process");
 var PDFProcessor = /** @class */ (function () {
-    function PDFProcessor(orgfilepath, newfilepath, password, username) {
-        this.orgfilepath = orgfilepath;
-        this.newfilepath = newfilepath;
+    function PDFProcessor(password, username) {
         this.password = password;
         this.username = username;
-        this.methodarray = ['decrypt', 'encrypt'];
+        this.methodarray = ["decrypt", "encrypt"];
     }
-    PDFProcessor.prototype.process = function (method) {
+    PDFProcessor.prototype.process = function (method, orgfilepath, newfilepath) {
         return __awaiter(this, void 0, void 0, function () {
             var cmd, res;
-            var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         if (!this.methodarray.includes(method)) {
-                            throw 'invalid method parameter (encrypt or decrypt)';
+                            throw "invalid method parameter (encrypt or decrypt)";
                         }
                         cmd = method === this.methodarray[0]
-                            ? "qpdf --password=" + this.password + " --" + method + " " + this.orgfilepath + " " + this.newfilepath
-                            : "qpdf --" + method + " " + this.username + " " + this.password + " 40 -- " + this.newfilepath + " " + this.orgfilepath;
+                            ? "qpdf --password=" + this.password + " --" + method + " " + orgfilepath + " " + newfilepath
+                            : "qpdf --" + method + " " + this.username + " " + this.password + " 40 -- " + orgfilepath + " " + newfilepath;
                         return [4 /*yield*/, new Promise(function (resolve, reject) {
                                 child_process_1.exec(cmd, function (error) {
                                     if (error !== null) {
                                         resolve({ error: true, message: error });
                                     }
                                     else {
-                                        reject({ error: false, message: "pdf " + method + "ed successfully and saved here' + " + _this.newfilepath });
+                                        reject({
+                                            error: false,
+                                            message: "pdf " + method + "ed successfully and saved here' + " + newfilepath
+                                        });
                                     }
                                 });
                             })];

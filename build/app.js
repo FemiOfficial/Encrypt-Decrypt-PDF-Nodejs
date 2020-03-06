@@ -11,12 +11,14 @@ var password = 'testpassword';
 var username = "testusername";
 var encryptmethod = 'encrypt';
 var decryptmethod = 'decrypt';
-var processor = new processor_1.default(sourcepath, destpath, password, username);
+var processor = new processor_1.default(password, username);
 // encrypt pdf
-processor.process(encryptmethod)
+processor
+    .process(encryptmethod, destpath, sourcepath)
     .then(function (data) { return console.log(data); })
     .catch(function (err) { return console.log(err); });
 //decrypt pdf
-processor.process(decryptmethod)
+processor
+    .process(decryptmethod, sourcepath, destpath)
     .then(function (data) { return console.log(data); })
     .catch(function (err) { return console.log(err); });
