@@ -11,6 +11,8 @@ Clone the repository or download and unzip:
 
 Start the App by running:
 
+`sudo apt-get install -y qpdf`
+
 `npm install`
 
 `npm run start`
