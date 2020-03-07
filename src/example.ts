@@ -1,5 +1,5 @@
 import path from 'path';
-import Processor from './processor';
+import Processor from '.';
 
 
 const sourcepath: string = path.join(__dirname, '../src/encrypted/testdocument.pdf');
@@ -15,7 +15,7 @@ const processor = new Processor(password, username);
 
 // encrypt pdf
 processor
-  .process('encryptmethod', destpath, sourcepath)
+  .process(encryptmethod, destpath, sourcepath)
   .then(data => console.log(data))
   .catch(err => console.log(err));
 

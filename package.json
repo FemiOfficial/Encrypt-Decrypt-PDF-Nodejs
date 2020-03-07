@@ -2,12 +2,14 @@
   "name": "encrypt-decrpt-pdf",
   "version": "1.0.0",
   "description": "",
-  "main": "processor.ts",
+  "main": "index.ts",
   "scripts": {
     "start:dev": "nodemon",
     "build": "rm -rf ./build && tsc",
-    "test": "npm run build && nyc mocha ./build/test.js --timeout 30000000  --exit",
-    "start": "npm run build && node build/app.js"
+    "start": "npm run build && node build/app.js",
+    "generate-lcov": "nyc report --reporter=text-lcov > lcov.info",
+    "test": "cross-env TS_NODE_FILES=true mocha --exit --require ts-node/register --colors src/test.ts",
+    "coverage": "nyc npm run test"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,7 @@
     "nodemon": "^2.0.2",
     "nyc": "^14.1.1",
     "ts-node": "^8.6.2",
+    "cross-env": "^5.2.0",
     "typescript": "^3.8.3"
   }
 }

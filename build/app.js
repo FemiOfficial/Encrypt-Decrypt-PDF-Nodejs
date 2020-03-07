@@ -13,10 +13,10 @@ var encryptmethod = 'encrypt';
 var decryptmethod = 'decrypt';
 var processor = new processor_1.default(password, username);
 // encrypt pdf
-processor
-    .process('encryptmethod', destpath, sourcepath)
-    .then(function (data) { return console.log(data); })
-    .catch(function (err) { return console.log(err); });
+// processor
+//   .process(encryptmethod, destpath, sourcepath)
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
 //decrypt pdf
 processor
     .process(decryptmethod, sourcepath, destpath)
