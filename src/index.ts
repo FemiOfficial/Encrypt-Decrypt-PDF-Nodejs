@@ -28,7 +28,7 @@ class PDFProcessor {
         } else {
           reject({
             error: false,
-            message: `pdf ${method}ed successfully and saved here, ${newfilepath}`
+            message: `pdf ${method}ed successfully and saved here => ${newfilepath}`
           });
         }
       });
