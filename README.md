@@ -11,7 +11,7 @@ Install [qpdf](http://qpdf.sourceforge.net/)
 
 `sudo apt-get install -y qpdf`
 
-Clone the repository or download and unzip:
+Install `encrypt-decrpt-pdf`
 
 `npm i encrypt-decrpt-pdf`
 
