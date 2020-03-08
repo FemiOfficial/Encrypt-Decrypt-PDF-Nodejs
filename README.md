@@ -1,6 +1,12 @@
+[![Build Status](https://travis-ci.org/FemiOfficial/Encrypt-Decrypt-PDF-Nodejs.svg?branch=master)](https://travis-ci.org/FemiOfficial/Encrypt-Decrypt-PDF-Nodejs)
+
 ## Encrypting and Decrypting PDF files with Nodejs
 
-[![Build Status](https://travis-ci.org/FemiOfficial/Encrypt-Decrypt-PDF-Nodejs.svg?branch=master)](https://travis-ci.org/FemiOfficial/Encrypt-Decrypt-PDF-Nodejs)
+A nodejs library implemented in TS to convieniently encrypt and decrypt pdf documents and save to disk.
+
+### Compactibility
+VanillaJS, ES5, ES6 and Typescript
+
 
 ### Dependecies 
 Majorly depends on Linux [qpdf](http://qpdf.sourceforge.net/)
@@ -17,25 +23,31 @@ Install `encrypt-decrpt-pdf`
 
 ### Using Encrypt-Decrypt-PDF
 
+
+#### Intializing in JS
 ```
-import path from 'path';
-import Processor from 'encrypt-decrpt-pdf';
+const path = require('path');
+const Processor = require('encrypt-decrpt-pdf').PDFProcessor;
 
-
-const sourcepath: string = path.join(__dirname, '../src/encrypted/testdocument.pdf');
-const destpath: string = path.join(__dirname, '../src/decrypted/testdocument.pdf');
-const password: String = 'testpassword';
-const username: String = "testusername";
-
-const encryptmethod: string = 'encrypt'
-const decryptmethod: string = 'decrypt'
-
+const password = 'testpassword';
+const username = "testusername";
 
 const processor = new Processor(password, username);
 
 ```
 
-After initializing, you can use `process` method to encrypt/decrypt any PDF file with the correct parameters needed. 
+#### Declaring Parameters
+```
+
+const sourcepath = path.join(__dirname, 'path to file');
+const destpath = path.join(__dirname, 'path to file');
+
+const encryptmethod = 'encrypt'
+const decryptmethod = 'decrypt'
+
+```
+
+After initializing, you can use the `process` method to encrypt/decrypt any PDF file with the correct parameters needed. 
 
 #### Encrypting PDF
 

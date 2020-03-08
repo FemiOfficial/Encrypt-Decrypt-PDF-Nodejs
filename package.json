@@ -1,16 +1,19 @@
 {
   "name": "encrypt-decrpt-pdf",
-  "version": "1.0.1",
-  "description": "",
-  "main": "index.ts",
+  "version": "1.0.10",
+  "description": "A nodejs library implemented in TS to convieniently encrypt and decrypt pdf documents and save to disk",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "scripts": {
     "start:dev": "nodemon",
     "build": "rm -rf ./build && tsc",
-    "start": "npm run build && node build/app.js",
+    "start": "npm run build && node build/example.js",
     "generate-lcov": "nyc report --reporter=text-lcov > lcov.info",
     "test": "cross-env TS_NODE_FILES=true mocha --exit --require ts-node/register --colors src/test.ts",
-    "coverage": "nyc npm run test"
+    "coverage": "nyc npm run test",
+    "prepublish": "rm -rf ./build && tsc"
   },
+  "prepublish": "rm -rf ./build && tsc",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FemiOfficial/Encrypt-Decrypt-PDF-Nodejs.git"

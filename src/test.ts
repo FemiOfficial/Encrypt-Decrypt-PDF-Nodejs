@@ -1,5 +1,6 @@
 import path from "path";
-import Processor from ".";
+import * as Processor from "./processor";
+
 import assert from "assert";
 import { expect } from "chai";
 
@@ -33,9 +34,9 @@ const encryptmethod: string = "encrypt";
 const decryptmethod: string = "decrypt";
 const invalidmethod: string = "invalid";
 
-const processor = new Processor(password, username);
+const processor = new Processor.EncryptDecryptPDF.PDFProcessor(password, username);
 
-const invalidprocessor = new Processor(invalidpassword, username);
+const invalidprocessor = new Processor.EncryptDecryptPDF.PDFProcessor(invalidpassword, username);
 
 describe("Testing Processor on various test scenarios", () => {
   it("should throw an error for invalid file path for encryption", () => {
@@ -44,7 +45,7 @@ describe("Testing Processor on various test scenarios", () => {
       .then((data: any) => {
         assert.equal(data.error, true);
       })
-      .catch(e => e);
+      .catch((e: any) => e);
   });
 
   it("should throw an error for invalid file path for decryption", () => {
@@ -53,7 +54,7 @@ describe("Testing Processor on various test scenarios", () => {
       .then((data: any) => {
         assert.equal(data.error, true);
       })
-      .catch(e => e);
+      .catch((e: any) => e);
   });
 
   it("should throw an error for invalid method on an encrypted file", () => {
@@ -62,7 +63,7 @@ describe("Testing Processor on various test scenarios", () => {
       .then((data: any) => {
         assert.equal(data.error, true);
       })
-      .catch(e => e);
+      .catch((e: any) => e);
   });
 
   it("should successfully decrypt an encrypted file", () => {
@@ -71,7 +72,7 @@ describe("Testing Processor on various test scenarios", () => {
       .then((data: any) => {
         assert.deepEqual(data.error, false);
       })
-      .catch(e => e);
+      .catch((e: any) => e);
   });
 
   it("should throw error for invalid password on file", () => {
@@ -80,7 +81,7 @@ describe("Testing Processor on various test scenarios", () => {
       .then((data: any) => {
         assert.deepEqual(data.error, true);
       })
-      .catch(e => e);
+      .catch((e: any) => e);
   });
 
   it("should throw error for encrypting an already encrypted file", () => {
@@ -89,7 +90,7 @@ describe("Testing Processor on various test scenarios", () => {
       .then((data: any) => {
         assert.deepEqual(data.error, true);
       })
-      .catch(e => e);
+      .catch((e: any) => e);
   });
 
   it("should successfully encrpyt a file", () => {
@@ -98,7 +99,7 @@ describe("Testing Processor on various test scenarios", () => {
       .then((data: any) => {
         assert.deepEqual(data.error, false);
       })
-      .catch(e => e);
+      .catch((e: any) => e);
   });
 
   it("should throw error for invalid processor method", () => {
@@ -107,6 +108,6 @@ describe("Testing Processor on various test scenarios", () => {
       .then((data: any) => {
         assert.deepEqual(data.error, true);
       })
-      .catch(e => e);
+      .catch((e: any) => e);
   });
 });
