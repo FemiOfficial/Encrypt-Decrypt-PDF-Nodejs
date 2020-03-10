@@ -23,7 +23,7 @@ export namespace EncryptDecryptPDF {
         ? `qpdf --password=${this.password} --${method} ${orgfilepath} ${newfilepath}`
         : `qpdf --${method} ${this.username} ${this.password} 40 -- ${orgfilepath} ${newfilepath}`;
 
-    const res = await new Promise((resolve, reject) => {
+    const res = new Promise((resolve, reject) => {
       exec(cmd, (error: any) => {
         if (error !== null) {
           resolve({ error: true, message: error });
@@ -41,5 +41,3 @@ export namespace EncryptDecryptPDF {
 }
 
 }
-
-// export default PDFProcessor;
