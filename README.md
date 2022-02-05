@@ -53,7 +53,7 @@ After initializing, you can use the `process` method to encrypt/decrypt any PDF 
 
 ```
 processor
-  .process(encryptmethod, destpath, sourcepath)
+  .encrypt(destpath, sourcepath)
   .then(data => console.log(data))
   .catch(err => console.log(err));
 ```
@@ -62,7 +62,7 @@ processor
 
 ```
 processor
-  .process(decryptmethod, sourcepath, destpath)
+  .decrypt(sourcepath, destpath)
   .then(data => console.log(data))
   .catch(err => console.log(err));
 ```
