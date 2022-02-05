@@ -5,23 +5,26 @@ export namespace EncryptDecryptPDF {
   export class PDFProcessor {
   password: String;
   username: String;
-  methodarray: Array<String>;
 
   constructor(password: String, username: String) {
     this.password = password;
     this.username = username;
-    this.methodarray = ["decrypt", "encrypt"];
   }
 
-  public async process(method: string, orgfilepath: string, newfilepath: string) {
-    if (!this.methodarray.includes(method)) {
-      return { error: true, message: "invalid method parameter (encrypt or decrypt)" };
-    }
+  public async decrypt(orgfilepath: string, newfilepath: string) {
+    return await this.process('decrypt', orgfilepath, newfilepath);
+  }
+
+  public async encrypt(orgfilepath: string, newfilepath: string) {
+    return await this.process('encrypt', orgfilepath, newfilepath);
+  }
+
+  private async process(method: 'encrypt' | 'decrypt', orgfilepath: string, newfilepath: string) {
     // linux qpdf command to encrypt/decrypt pdf
     const cmd: string =
-      method === this.methodarray[0]
-        ? `qpdf --password=${this.password} --${method} ${orgfilepath} ${newfilepath}`
-        : `qpdf --${method} ${this.username} ${this.password} 40 -- ${orgfilepath} ${newfilepath}`;
+      method === 'decrypt'
+        ? `qpdf --password=${this.password} --${method} ${orgfilepath} ${newfilepath} --allow-weak-crypto`
+        : `qpdf --${method} ${this.username} ${this.password} 40 -- ${orgfilepath} ${newfilepath} --allow-weak-crypto`;
 
     const res = new Promise((resolve, reject) => {
       exec(cmd, (error: any) => {
